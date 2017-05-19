@@ -30,6 +30,11 @@ gem 'ancestry'
 gem 'rails_admin'
 gem 'foundation-rails'
 gem 'react-rails'
+gem 'flux-rails-assets'
+gem 'lodash-rails'
+
+gem 'hirb'         # モデルの出力結果を表形式で表示するGem
+gem 'hirb-unicode' # 日本語などマルチバイト文字の出力時の出力結果のずれに対応
 
 # Use Unicorn as the app server
 # gem 'unicorn'

@@ -59,6 +59,8 @@ GEM
     debug_inspector (0.0.3)
     erubis (2.7.0)
     execjs (2.7.0)
+    flux-rails-assets (2.1.0)
+      railties (>= 3.1)
     font-awesome-rails (4.7.0.1)
       railties (>= 3.2, < 5.1)
     foundation-rails (6.3.1.0)
@@ -69,6 +71,10 @@ GEM
       activesupport (>= 4.2.0)
     haml (4.0.7)
       tilt
+    hirb (0.7.3)
+    hirb-unicode (0.0.5)
+      hirb (~> 0.5)
+      unicode-display_width (~> 0.1.1)
     i18n (0.8.1)
     jbuilder (2.6.4)
       activesupport (>= 3.0.0)
@@ -83,6 +89,8 @@ GEM
     kaminari (0.17.0)
       actionpack (>= 3.0.0)
       activesupport (>= 3.0.0)
+    lodash-rails (4.17.4)
+      railties (>= 3.1)
     loofah (2.0.3)
       nokogiri (>= 1.5.9)
     mail (2.6.5)
@@ -182,6 +190,7 @@ GEM
       thread_safe (~> 0.1)
     uglifier (3.2.0)
       execjs (>= 0.3.0, < 3)
+    unicode-display_width (0.1.1)
     web-console (2.3.0)
       activemodel (>= 4.0)
       binding_of_caller (>= 0.7.2)
@@ -195,9 +204,13 @@ DEPENDENCIES
   ancestry
   byebug
   coffee-rails (~> 4.1.0)
+  flux-rails-assets
   foundation-rails
+  hirb
+  hirb-unicode
   jbuilder (~> 2.0)
   jquery-rails
+  lodash-rails
   rails (= 4.2.6)
   rails_admin
   react-rails
