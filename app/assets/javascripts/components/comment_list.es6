@@ -1,18 +1,25 @@
-  class CommentList extends React.Component {
+import Comment from './comment'
+class CommentList extends React.Component {
+
+  static get contextTypes() {
+    return {
+      store: React.PropTypes.object.isRequired
+    }
+  }  
 
   componentDidMount() {
-    this.props.store.addChangeListener(this._onChange.bind(this));
+    this.context.store.addChangeListener(this._onChange.bind(this));
   }
 
   componentWillUnmount() {
-    this.props.store.removeChangeListener(this._onChange.bind(this));
+    this.context.store.removeChangeListener(this._onChange.bind(this));
   }
 
   render() {
     console.log('rendering');
     return (
       <div>
-        {this.props.store.comments().map(function(comment){
+        {this.context.store.comments().map(function(comment){
           return <Comment key={comment.id} {... comment} />;
         })}
       </div>
