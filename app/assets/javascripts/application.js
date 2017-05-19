@@ -25,4 +25,4 @@
 //= require_tree .
 
 $(function(){ $(document).foundation(); });
-SystemJS.import('./app');
+SystemJS.import('./components/comment_section')
