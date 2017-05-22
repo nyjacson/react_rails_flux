@@ -11,21 +11,34 @@ class Comment extends React.Component {
       rank: React.PropTypes.number
    }
   }
+
+  constructor() {
+    super();
+    this.state = { isReplying : false }
+  }
+
+  onToggleReply() {
+    this.setState({isReplying: !this.state.isReplying});
+  }
   
   render() {
     const style  = {
       "display": "flex",
       "justifyContent": "space-between"
     }
+    const replyText = this.state.isReplying ? 'Hide' : 'Reply';
     return (
-      <div>
+      <li className='comment row collapse'>
         <div style={style}>
-          <p>{this.props.body}</p>
-          <p>by: {this.props.author}</p>
+          <blockquote>
+            {this.props.body}
+            <cite>by: {this.props.author}</cite>
+          </blockquote>
         </div>
-        <CommentForm parent_id={this.props.id} />
+        <button className="button tiny secondary" onClick={this.onToggleReply.bind(this)}>{replyText}</button>
+        <CommentForm parent_id={this.props.id} isReplying={this.state.isReplying} />
         <CommentList parent_id={this.props.id} />
-      </div>
+      </li>
     );
   }
 }
