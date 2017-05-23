@@ -2,6 +2,11 @@ import CommentForm from './comment_form';
 import CommentList from './comment_list';
 
 class Comment extends React.Component {
+  static get contextTypes() {
+    return {
+      actions: React.PropTypes.object.isRequired
+    }
+  }
 
   static get propTypes() {
    return {
@@ -20,11 +25,19 @@ class Comment extends React.Component {
   onToggleReply() {
     this.setState({isReplying: !this.state.isReplying});
   }
+
+  onUpvote(event) {
+    this.context.actions.upvoteComment(this.props);
+  }
+
+  onCommentSubmitted(event) {
+    this.setState({isReplying: false});
+  }
   
   render() {
     const style  = {
       "display": "flex",
-      "justifyContent": "space-between"
+      "justifyContent": "space-between",
     }
     const replyText = this.state.isReplying ? 'Hide' : 'Reply';
     return (
@@ -32,11 +45,21 @@ class Comment extends React.Component {
         <div style={style}>
           <blockquote>
             {this.props.body}
-            <cite>by: {this.props.author}</cite>
+            <div style={style}>
+              <cite>
+                by: {this.props.author}
+              </cite>
+              <span className="label secondary right">{this.props.rank}</span>
+            </div>
+
           </blockquote>
         </div>
         <button className="button tiny secondary" onClick={this.onToggleReply.bind(this)}>{replyText}</button>
-        <CommentForm parent_id={this.props.id} isReplying={this.state.isReplying} />
+        <button className="button tiny" onClick={this.onUpvote.bind(this)}>+1</button>
+        <CommentForm 
+          parent_id={this.props.id} 
+          isReplying={this.state.isReplying} 
+          onCommentSubmitted={this.onCommentSubmitted.bind(this)} />
         <CommentList parent_id={this.props.id} />
       </li>
     );

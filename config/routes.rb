@@ -1,7 +1,9 @@
 Rails.application.routes.draw do
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
   resources :restaurants do
-    resources :comments
+    resources :comments do
+      put 'upvote', to: 'comments#upvote'
+    end
   end
   root 'restaurants#index'
   # The priority is based upon order of creation: first created -> highest priority.

@@ -13,12 +13,22 @@ class Api {
       'X-Requested-With': 'XMLHttpRequest'
     }
   }
+ static put(route, params) {
+    return this.xhr(route, params, 'put');
+  }
+
   static post(route, params) {
-    return fetch(`${route}.json`, _.merge({
-      method: 'post',
+    return this.xhr(route, params, 'post');
+  }
+
+  static xhr(route, params, verb) {
+    return fetch(route + '.json', _.merge({
+      method: verb,
       credentials: 'include',
       headers: this.headers()
-    }, {body: JSON.stringify(params)}));
+    }, {body: JSON.stringify(params)})).then( resp => {
+      return resp.json();
+    });
   }
 }
 
